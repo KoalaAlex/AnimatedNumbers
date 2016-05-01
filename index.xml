@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Animated Numbers</title>
-    <link>http://replace-this-with-your-hugo-site.com/</link>
+    <link>http://koalaalex.github.io/AnimatedNumbers/</link>
     <description>Recent content on Animated Numbers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 28 Apr 2016 18:38:03 +0200</lastBuildDate>
-    <atom:link href="http://replace-this-with-your-hugo-site.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://koalaalex.github.io/AnimatedNumbers/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>welcome</title>
-      <link>http://replace-this-with-your-hugo-site.com/post/welcome/</link>
+      <link>http://koalaalex.github.io/AnimatedNumbers/post/welcome/</link>
       <pubDate>Thu, 28 Apr 2016 18:38:03 +0200</pubDate>
       
-      <guid>http://replace-this-with-your-hugo-site.com/post/welcome/</guid>
+      <guid>http://koalaalex.github.io/AnimatedNumbers/post/welcome/</guid>
       <description>&lt;p&gt;Hello World&lt;/p&gt;
 </description>
     </item>
