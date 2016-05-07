@@ -1,0 +1,22 @@
+
+For Better Debug the Mobile Parameter it is better to access localhost via phone.
+But how do we do that?
+Well not in the custom way you have to change "localhost" to yout IP Adress from your Computer.
+
+Simply run Hugo on your IP not localhost:
+Hugo server --baseURL="<your-ip>" --bind="<your-ip>"
+
+Then Hugo created WebServer at http://<your-ip>:1313/
+If your IP is 192.168.178.01.
+then simplay Replay <your-ip> with this number.
+
+You can change the port as well by tying additional --port:<your-port>
+
+So here is shown all together :)
+Hugo server --baseURL="192.168.178.01" --bind="192.168.178.01" --port:444
+
+Then Hugo created WebServer at http://192.168.178.01:4444/
+
+Therefore you can access this via a mobile device.
+But be aware! You have to be in the same network!
+e.g. same WLAN
