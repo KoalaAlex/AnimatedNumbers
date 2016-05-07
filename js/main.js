@@ -1,42 +1,105 @@
-var $layer_two = $("#layer_two");
-var startValueY = 110;
-var minValue = 110;
-var maxValue = 120;
-var scale = 0.5;
+var em;
+var delta;
+var deltaY;
+var deltaX;
+var relativeY;
+var windowHeight;
+var windowWidth;
+var scale = 1;
+
+var lastScrollY = 0,
+    ticking = false,
+    bgElmOne = document.getElementById('layer_one'),
+    bgElm = document.getElementById('layer_two'),
+    headerText = document.getElementById('starter_text'),
+    speedDivider = -20;
+
+// Y
+var translateValueY = -4;
+var maxTranslateY = -20;
+var minTranslateY = -4;
+
+// X
+var translateValueX = 0;
+var maxTranslateX = 10;
+var minTranslateX = -10;
 
 $(document).ready(function(){
-   console.log( "ready!" );
-   return false;
+  windowHeight = window.innerHeight;
+  windowWidth = window.innerWidth;
+  document.onmousemove = requestTickMouse();
+
+  // Gyroscope
+  if (window.DeviceMotionEvent==undefined) {
+    alert('yes');
+  } else {
+    alert('no');
+  }
+  return false;
 });
 
-document.addEventListener("mousewheel", MouseWheelHandler(), false);
+$(document).resize(function(){
+  windowHeight = window.innerHeight;
+  windowWidth = window.innerWidth;
+  return false;
+});
 
-function MouseWheelHandler() {
-    return function (e) {
-        // cross-browser wheel delta
-        var e = window.event || e;
-        var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-
-        //scrolling down?
-        if (delta < 0) {
-            console.log("Down " + delta);
-            startValueY += delta * scale;
-            if(startValueY < minValue){
-              startValueY = minValue;
-            }
-            $layer_two[0].style.marginTop = "-" + startValueY + "vh";
-          //  console.log($layer_two[0].style.marginTop);
-        }
-
-        //scrolling up?
-        else {
-             console.log("Up " + delta);
-             startValueY += delta * scale;
-             if(startValueY > maxValue){
-               startValueY = maxValue;
-             }
-             $layer_two[0].style.marginTop = "-" + startValueY + "vh";
-        }
-        return false;
+/*
+var requestTickWheel = function() {
+  return function (e) {
+    if (!ticking) {
+      ticking = true;
+      // cross-browser wheel delta
+      em = window.event || e;
+      delta = Math.max(-1, Math.min(1, (em.wheelDelta || -em.detail)));
+      console.log(e.clientY);
+      window.requestAnimationFrame(checkScroll);
     }
+    return false;
+  }
+};*/
+
+var requestTickMouse = function() {
+  return function (e) {
+    if (!ticking) {
+      ticking = true;
+      // cross-browser wheel delta
+      deltaY = e.clientY / windowHeight;
+      deltaX = e.clientX / windowWidth;
+      window.requestAnimationFrame(checkMousePos);
+    }
+    return false;
+  }
+};
+
+//window.addEventListener('wheel', requestTickWheel(), false);
+
+function checkMousePos(){
+  translateValueY = -((deltaY) * (minTranslateY - maxTranslateY)) + minTranslateY;
+  translateValueX = ((1 - deltaX) * (maxTranslateX - minTranslateX)) + minTranslateX;
+
+  // We don't want parallax to happen if scrollpos is below 0
+
+  translateY3d(bgElm, translateValueX, translateValueY);
+
+  translateY3d(headerText, translateValueX * 0.5, (translateValueY * 0.5) - 80);
+
+  // Blur Smooth
+  // bgElmOne.style['-webkit-filter'] = 'blur(' + Math.floor((4 - (translateValue - minTranslate)/4)) + 'px)';
+  bgElmOne.style['-webkit-filter'] = 'blur(' + (4 - (translateValueY - maxTranslateY)/4) + 'px)';
+
+  // Stop ticking
+  ticking = false;
+  return false;
 }
+
+// Translates an element on the Y axis using translate3d
+// to ensure that the rendering is done by the GPU
+var translateY3d = function(elm, valueX, valueY) {
+  var translate = 'translate3d(' + valueX + 'px,' + valueY + 'px, 0px)';
+  elm.style['-webkit-transform'] = translate;
+  elm.style['-moz-transform'] = translate;
+  elm.style['-ms-transform'] = translate;
+  elm.style['-o-transform'] = translate;
+  elm.style.transform = translate;
+};

@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+html {
+  overflow: hidden;
+}
+
 #hero {
   width: 100%;
   height: 100vh;
@@ -12,13 +16,34 @@
     height: 110%;
     background-position: center center;
   }
+  #hero .text {
+    text-align: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    margin: auto;}
+    #hero .text h1 {
+      text-align: center;
+      margin-top: 50vh;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 90px;
+      color: white;
+    }
 
 #layer_one {
+  -webkit-filter: blur(0px);
   background-image: url(../images/amazing001.jpg);
 }
 
 #layer_two {
   margin-top: -110vh;
   background-image: url(../images/amazing002.png);
-  /* background-size: 110%, 110%; */
+}
+
+#canvas {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
 }
