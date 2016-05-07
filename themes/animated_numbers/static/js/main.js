@@ -31,10 +31,33 @@ $(document).ready(function(){
 
   // Gyroscope
   if (window.DeviceMotionEvent==undefined) {
-    alert('yes');
+    alert('Device Motion Not Working!!!');
   } else {
-    alert('no');
+    window.ondevicemotion = function(event) {
+      ax = event.accelerationIncludingGravity.x
+      ay = event.accelerationIncludingGravity.y
+      az = event.accelerationIncludingGravity.z
+      rotation = event.rotationRate;
+      if (rotation != null) {
+        arAlpha = Math.round(rotation.alpha);
+        arBeta = Math.round(rotation.beta);
+        arGamma = Math.round(rotation.gamma);
+      }
+      alert("Numebrs: " + ax + " " + ay + " " + az);
+    }
+
+    window.ondeviceorientation = function(event) {
+      alpha = Math.round(event.alpha);
+      beta = Math.round(event.beta);
+      gamma = Math.round(event.gamma);
+    }
   }
+
+  // First Translate
+  translateY3d(bgElm, translateValueX, translateValueY);
+
+  translateY3d(headerText, translateValueX * 0.5, (translateValueY * 0.5) - 80);
+
   return false;
 });
 
