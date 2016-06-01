@@ -3,27 +3,27 @@
     padding: 0;
 }
 
-.hero {
-  position: relative;
+html {
+  overflow: hidden;
+}
+
+#hero {
   width: 100%;
   height: 100vh;
   overflow: hidden;}
-  .hero .layer {
-    width: 110%;
+  #hero .layer {
+    width: 100%;
     height: 110%;
-    margin-left: -5%;
     background-position: center center;
-    background-size: cover;
   }
-  .hero .text {
+  #hero .text {
     text-align: center;
-    /* position: fixed;*/
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     top: 0px;
     margin: auto;}
-    .hero .text h1 {
+    #hero .text h1 {
       text-align: center;
       margin-top: 50vh;
       font-family: 'Josefin Sans', sans-serif;
@@ -41,27 +41,9 @@
   background-image: url(../images/amazing002.png);
 }
 
-#h2_layer_one {
-  -webkit-filter: blur(0px);
-  background-image: url(../images/hero2.jpg);
-}
-
-#h2_layer_two {
-  margin-top: -110vh;
-  background-image: url(../images/color-cloud.png);
-}
-
-#hero2 {
+#canvas {
+  position: absolute;
+  top: 0px;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;}
-
-#debug_device {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 20px;
-  color: white;
-  z-index: 999999;
+  height: 100%;
 }

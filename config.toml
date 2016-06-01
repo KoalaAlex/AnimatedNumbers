@@ -1,3 +1,4 @@
 baseurl = "http://koalaalex.github.io/AnimatedNumbers/"
 languageCode = "en-us"
 title = "Animated Numbers"
+theme = "animated_numbers"
